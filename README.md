@@ -1,27 +1,37 @@
 # OsanoIntegrationTest
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.3.
+Test Osano Script Integration
 
-## Development server
+The script is embedded [here](./src/index.html).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Start locally
 
-## Code scaffolding
+```bash
+npm i
+npm run start
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Tests
 
-## Build
+- Working: [http://localhost:4200/](http://localhost:4200/test/123) and [http://localhost:4200/test](http://localhost:4200/test)
+  - No routing parameters
+- Failing: [http://localhost:4200/test/123](http://localhost:4200/test/123)
+  - App does not start
+  - See browser console for errors
+  - After removing Osano Script everything works as expected
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Errors:
 
-## Running unit tests
+```bash
+GET http://localhost:4200/test/runtime.js net::ERR_ABORTED 404 (Not Found)
+GET http://localhost:4200/test/polyfills.js net::ERR_ABORTED 404 (Not Found)
+GET http://localhost:4200/test/vendor.js net::ERR_ABORTED 404 (Not Found)
+GET http://localhost:4200/test/main.js net::ERR_ABORTED 404 (Not Found)
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Other (not blocking) errors:
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+cmp.osano.com/:18 Uncaught TypeError: data.split is not a function
+    at cmp.osano.com/:18
+```
